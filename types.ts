@@ -23,14 +23,14 @@ export interface Product {
   id: string;
   active?: boolean;
   description?: string;
-  images?: string;
+  image?: string;
   name?: string;
   metadata?: Stripe.Metadata;
 }
 
 export interface Price {
   id: string;
-  producty_id?: string;
+  product_id?: string;
   active?: boolean;
   description?: string;
   unit_amount?: number;
@@ -59,4 +59,9 @@ export interface Subscription {
   trial_start?: string;
   trial_end?: string;
   prices?: Price;
+}
+
+export interface ProductWithPrice extends Product{
+
+  prices?:Price[];
 }
