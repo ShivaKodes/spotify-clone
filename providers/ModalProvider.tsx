@@ -6,6 +6,8 @@ import AuthModal from "@/components/AuthModal";
 import UploadModal from "@/components/UploadModal";
 import SubscribeModal from "@/components/SubscribeModal";
 import { ProductWithPrice } from "@/types";
+import MenuModal from "@/components/MenuModal";
+import ChangePasswordModal from "@/components/ChangePasswordModal";
 
 
 
@@ -29,6 +31,8 @@ const ModalProvider:React.FC<ModalProviderProps> = ({products}) => {
       <AuthModal />
       <UploadModal />
       <SubscribeModal products={products}/>
+      <MenuModal />
+      <ChangePasswordModal />
     </>
   );
 };

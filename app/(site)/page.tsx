@@ -2,17 +2,22 @@ import getSongs from "@/actions/getSongs";
 import Header from "@/components/Header";
 import ListItem from "@/components/ListItem";
 import PageContent from "./components/PageContent";
+import getUserDetail from "@/actions/getUserDetail";
 
 export const revalidate = 0;
 
 export default async function Home() {
   const songs = await getSongs();
+  const user=await getUserDetail();
 
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
         <div className="mb-2 ">
-          <h1 className="text-white text-3xl font-semibold">Welcome Back</h1>
+          <h1 className="text-white text-3xl font-semibold flex flex-col items-start">
+            <p className="text-lg text-white">Welcome Back</p> 
+            <p className="text-5xl text-white font-bold">{user?.full_name}</p>
+          </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 mt-4">
             <ListItem
               image="/images/liked.png"

@@ -14,7 +14,7 @@ export interface UserDetails {
   first_name: string;
   last_name: string;
   full_name?: string;
-  avatar_url?: string;
+  avatar_url: string;
   biiling_address?: Stripe.Address;
   payement_method?: Stripe.PaymentMethod[Stripe.PaymentMethod.Type];
 }
@@ -40,7 +40,7 @@ export interface Price {
   interval_count?: number;
   trial_period_days?: number | null;
   metadata?: Stripe.Metadata;
-  product?: Product;
+  products?: Product;
 }
 export interface Subscription {
   id: string;

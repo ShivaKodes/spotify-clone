@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 
-import { FaUserAlt } from "react-icons/fa";
+
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
@@ -15,6 +15,8 @@ import Button from "./Button";
 import useAuthModal from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import usePlayer from "@/hooks/usePlayer";
+import AccountDropdownMenuDemo from "./AccountDropDownMenu"
+import { FaUserAlt } from "react-icons/fa";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -31,16 +33,24 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
 
   const { user } = useUser();
 
+  // console.log("user",user)
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
     player.reset();
-    router.refresh();
+    
     if (error) {
       toast.error(error.message);
     } else {
+      // window.location.href="/"
+      router.push("/")
       toast.success("Logged out successfully");
+      // router.refresh();
     }
   };
+
+  const HandleAccountClick=()=>{
+    router.push('/account')
+  }
 
   return (
     <div
@@ -78,12 +88,9 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               <Button onClick={handleLogout} className="bg-white px-6 py-2">
                 Logout
               </Button>
-              <Button
-                className="bg-white"
-                onClick={() => router.push("/account")}
-              >
-                <FaUserAlt />
-              </Button>
+              {/* <Button className="bg-white" onClick={HandleAccountClick}><FaUserAlt /></Button> */}
+
+              <AccountDropdownMenuDemo onClick={HandleAccountClick}/>
             </div>
           ) : (
             <>

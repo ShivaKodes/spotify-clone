@@ -16,6 +16,7 @@ const LikedContent: React.FC<LikedContentProps> = ({ songs }) => {
   const router = useRouter();
   const onPlay = useOnPlay(songs);
   const { isLoading, user } = useUser();
+  // console.log(songs)
 
   useEffect(() => {
     if (!isLoading && !user) {

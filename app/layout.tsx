@@ -9,6 +9,7 @@ import ToasterProvider from "@/providers/ToasterProvider";
 import getSongsByUserId from "@/actions/getSongsByUserId";
 import getActiveProductsWithPrices from "@/actions/getActiveProductsWithPrices";
 import Player from "@/components/Player";
+import { twMerge } from "tailwind-merge";
 
 const font = Figtree({ subsets: ["latin"] });
 
@@ -29,7 +30,7 @@ export default async function RootLayout({
   const products=await getActiveProductsWithPrices()
   return (
     <html lang="en">
-      <body className={font.className}>
+      <body className={twMerge("bg-black h-screen",font.className)}>
         <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
